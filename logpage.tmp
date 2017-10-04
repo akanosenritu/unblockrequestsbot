@@ -1,0 +1,21 @@
+{{"{{-start-}}"}}
+'''{{pagename}}}'''
+
+generated at {{today}}
+currently the bot cannot handle range blocks correctly.
+
+== List==
+{{ raw }}{| class="wikitable"
+! user !! datetime_submitted !! revid_submitted !! sysop !! datetime_blocked !! reason_blocked{{ endraw }}{% for request in requests %}
+{{"|-"}}
+{{"| "}}{{request.user}}{{"|"}}{{request.timestamp_submitted.isoformat()}}{{"|"}}{{request.revid_submitted}}{{"|"}}{{request.sysop}}{{"|"}}{{request.timestamp_blocked.isoformat()}}{{"|"}}{{request.reason_blocked}}{% endfor %}
+{{raw}}|}{{endraw}}
+
+== Errors ==
+The bot could not confirm whether they are currently blocked. Their blocks may be expired.
+{{raw}}{! class="wikitable"
+! user !! datetime_submitted !! revid_submitted{{endraw}}{% for error in errors %}
+{{"|-"}}
+{{"| "}}{{error.user}}{{"|"}}{{error.timestamp_submitted.isoformat()}}{{"|"}}{{error.revid_submitted}}{% endfor %}
+{{"|}"}}
+{{"{{-stop-}}"}}
