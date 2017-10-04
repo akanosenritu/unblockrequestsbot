@@ -19,6 +19,7 @@ class UnblockRequest:
         self.site = site
         self.page = page
         self.user = None
+        self.is_ipuser = False
         self.is_blocked = False
         self.sysop = None
         self.timestamp_blocked = None
@@ -39,6 +40,8 @@ class UnblockRequest:
         namespace = self.page.namespace()
         if namespace == 3:
             self.user = self.page.title().split(":")[1]
+        if re.match(r"[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+", self.user):
+            self.is_ipuser = True
 
     def identify_submitted_revision(self):
         user = None
@@ -62,14 +65,28 @@ class UnblockRequest:
         self.revid_submitted = revid_submitted
 
     def get_log(self):
+        if self.is_ipuser:
+            for log in self.site.blocks(iprange=self.user):
+                self.sysop = log["by"]
+                self.reason_blocked = log["reason"]
+                self.timestamp_blocked = log["timestamp"]
+                self.is_blocked = True
+                break
+        else:
+            for log in self.site.blocks(users=self.user):
+                self.sysop = log["by"]
+                self.reason_blocked = log["reason"]
+                self.timestamp_blocked = log["timestamp"]
+                self.is_blocked = True
+                break
+        '''
         for log in self.site.logevents(logtype="block", page="利用者:"+self.user):
             self.sysop = log.user()
             self.timestamp_blocked = log.timestamp()
             self.reason_blocked = log.comment()
             self.is_blocked = True
             break
-        else:
-            self.is_blocked = False
+        '''
 
 
 def gen_unblock_requests(site):

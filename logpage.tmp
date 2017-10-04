@@ -8,7 +8,7 @@ currently the bot cannot handle range blocks correctly.
 {{ raw }}{| class="wikitable"
 ! user !! datetime_submitted !! revid_submitted !! sysop !! datetime_blocked !! reason_blocked{{ endraw }}{% for request in requests %}
 {{"|-"}}
-{{"| "}}{{request.user}}{{"|"}}{{request.timestamp_submitted.isoformat()}}{{"|"}}{{request.revid_submitted}}{{"|"}}{{request.sysop}}{{"|"}}{{request.timestamp_blocked.isoformat()}}{{"|"}}{{request.reason_blocked}}{% endfor %}
+{{"| "}}{{request.user}}{{"|"}}{{request.timestamp_submitted.isoformat()}}{{"|"}}{{request.revid_submitted}}{{"|"}}{{request.sysop}}{{"|"}}{{request.timestamp_blocked}}{{"|"}}{{request.reason_blocked}}{% endfor %}
 {{raw}}|}{{endraw}}
 
 == Errors ==
