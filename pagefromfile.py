@@ -137,12 +137,9 @@ class PageFromFileRobot(SingleSiteBot, CurrentPageBot):
         else:
             comment = i18n.twtranslate(self.site, 'pagefromfile-msg')
 
-        comment_top = comment + " - " + i18n.twtranslate(
-            self.site, 'pagefromfile-msg_top')
-        comment_bottom = comment + " - " + i18n.twtranslate(
-            self.site, 'pagefromfile-msg_bottom')
-        comment_force = "%s *** %s ***" % (
-            comment, i18n.twtranslate(self.site, 'pagefromfile-msg_force'))
+        comment_top = comment
+        comment_bottom = comment
+        comment_force = comment
 
         if page.exists():
             if not self.getOption('redirect') and page.isRedirectPage():
