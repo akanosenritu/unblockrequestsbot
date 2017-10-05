@@ -6,16 +6,24 @@ currently the bot cannot handle range blocks correctly.
 
 == List==
 {{ raw }}{| class="wikitable"
-! user !! datetime_submitted !! revid_submitted !! sysop !! datetime_blocked !! reason_blocked{{ endraw }}{% for request in requests %}
+! user !! datetime_submitted !! revid_submitted !! sysop !! datetime_blocked !! reason_blocked !! expiry{{ endraw }}{% for request in requests %}
 {{"|-"}}
-{{"| "}}{{request.user}}{{"|"}}{{request.timestamp_submitted.isoformat()}}{{"|"}}{{request.revid_submitted}}{{"|"}}{{request.sysop}}{{"|"}}{{request.timestamp_blocked}}{{"|"}}{{request.reason_blocked}}{% endfor %}
+{{"| "}}{{request.user}}{{"||"}}{{request.timestamp_submitted.isoformat()}}{{"||"}}{{request.revid_submitted}}{{"||"}}{{request.sysop}}{{"||"}}{{request.timestamp_blocked}}{{"||"}}{{request.reason_blocked}}{{"||"}}{{request.expiry}}{% endfor %}
 {{raw}}|}{{endraw}}
+
+=== range blocks ===
+{{raw}}{| class="wikitable"
+! user !! datetime_submitted !! revid_submitted !! sysop !! datetime_blocked !! reason_blocked !! range_blocked !! expiry{{endraw}}{% for range_block in range_blocks %}
+{{"|-"}}
+{{"| "}}{{range_block.user}}{{"||"}}{{range_block.timestamp_submitted.isoformat()}}{{"||"}}{{range_block.revid_submitted}}{{"||"}}{{range_block.sysop}}{{"||"}}{{range_block.timestamp_blocked}}{{"||"}}{{range_block.reason_blocked}}{{"||"}}{{range_block.iprange}}{{"||"}}{{range_block.expiry}}{% endfor %}
+{{raw}}|}{{endraw}}
+
 
 == Errors ==
 The bot could not confirm whether they are currently blocked. Their blocks may be expired.
 {{raw}}{! class="wikitable"
 ! user !! datetime_submitted !! revid_submitted{{endraw}}{% for error in errors %}
 {{"|-"}}
-{{"| "}}{{error.user}}{{"|"}}{{error.timestamp_submitted.isoformat()}}{{"|"}}{{error.revid_submitted}}{% endfor %}
+{{"| "}}{{error.user}}{{"||"}}{{error.timestamp_submitted.isoformat()}}{{"||"}}{{error.revid_submitted}}{% endfor %}
 {{"|}"}}
 {{"{{-stop-}}"}}
