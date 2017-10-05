@@ -1,2 +1,6 @@
 /.idea/
+/logs/
+/apicache/
 .ctrl
+user-config.py
+temp.txt
