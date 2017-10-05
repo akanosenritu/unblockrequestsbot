@@ -21,7 +21,7 @@ currently the bot cannot handle range blocks correctly.
 
 == Errors ==
 The bot could not confirm whether they are currently blocked. Their blocks may be expired.
-{{raw}}{! class="wikitable"
+{{raw}}{| class="wikitable"
 ! user !! datetime_submitted !! revid_submitted{{endraw}}{% for error in errors %}
 {{"|-"}}
 {{"| "}}{{error.user}}{{"||"}}{{error.timestamp_submitted.isoformat()}}{{"||"}}{{error.revid_submitted}}{% endfor %}
