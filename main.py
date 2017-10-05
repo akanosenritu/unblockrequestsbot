@@ -1,6 +1,5 @@
 # coding: utf-8
 
-import pagefromfile
 import pywikibot
 import mwparserfromhell as mwparser
 import jinja2
@@ -114,10 +113,6 @@ class LogPage:
         with codecs.open("temp.txt", "w", "utf-8") as f:
             f.write(self.rendered)
 
-    def upload(self):
-        a = ["-file:temp.txt", "-summary:\"bot test\"", "-force"]
-        pagefromfile.main(*a)
-
 
 if __name__ == "__main__":
     jawp = pywikibot.Site()
@@ -133,5 +128,4 @@ if __name__ == "__main__":
     logpage = LogPage(requests=requests, errors=errors)
     logpage.render()
     logpage.save()
-    # logpage.upload()
 
